@@ -9,9 +9,9 @@
     <ion-item-sliding *ngFor="let task of tasks">
       <ion-item>{{task.name}}</ion-item>
       <ion-item-options side="right">
-        <button ion-button (click)="unread(item)">Edit</button>
-        <button ion-button color="secondary" (click)="unread(item)">Mark as done</button>
-        <button ion-button color="danger" (click)="unread(item)">Unread</button>
+        <button ion-button>Edit</button>
+        <button ion-button color="secondary" (click)="markAsDone()">Mark as done</button>
+        <button ion-button color="danger" (click)="delete()">Delete</button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

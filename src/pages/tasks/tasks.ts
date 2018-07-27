@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { TaskAPI } from '../../api/task';
 
 @IonicPage()
@@ -9,10 +9,9 @@ import { TaskAPI } from '../../api/task';
 })
 
 export class TasksPage {
-
   tasks:any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public taskAPI: TaskAPI) { }
+  constructor(public taskAPI: TaskAPI) { }
 
   ionViewDidLoad() {
     this.loadTasks();
@@ -20,8 +19,15 @@ export class TasksPage {
 
   loadTasks() {
     this.taskAPI.query().subscribe((data) => {
-      console.log(data);
       this.tasks = data;
     })
+  }
+
+  delete() {
+
+  }
+
+  markAsDone() {
+    
   }
 }
