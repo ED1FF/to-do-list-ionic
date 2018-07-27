@@ -1,26 +1,24 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TaskFormPage } from '../task-form/task-form'
-
-/**
- * Generated class for the NewTaskPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController } from 'ionic-angular';
+import { TaskFormPage } from '../task-form/task-form';
+import { TaskAPI } from '../../api/task';
+import { TasksPage } from '../tasks/tasks';
 
 @IonicPage()
 @Component({
   selector: 'page-new-task',
   templateUrl: 'new-task.html',
 })
+
 export class NewTaskPage {
+  task:any = []
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public taskAPI: TaskAPI, public nav: NavController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NewTaskPage');
+  onCreate(task) {
+    this.taskAPI.create({ task: task }).subscribe(() => {
+      this.nav.push(TasksPage);
+    })
   }
-
 }
