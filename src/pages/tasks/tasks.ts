@@ -12,14 +12,16 @@ export class TasksPage {
 
   tasks:any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public taskAPI: TaskAPI) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public taskAPI: TaskAPI) { }
 
   ionViewDidLoad() {
+    this.loadTasks();
+  }
+
+  loadTasks() {
     this.taskAPI.query().subscribe((data) => {
       console.log(data);
       this.tasks = data;
     })
   }
-
 }
