@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { TasksPage } from '../pages/tasks/tasks';
 import { NewTaskPage } from '../pages/new-task/new-task';
+import { TaskFormPage } from '../pages/task-form/task-form'
 import { TaskAPI } from './../api/task';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { TaskAPI } from './../api/task';
     MyApp,
     TasksPage,
     NewTaskPage,
+    TaskFormPage,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +30,7 @@ import { TaskAPI } from './../api/task';
     MyApp,
     TasksPage,
     NewTaskPage,
+    TaskFormPage,
   ],
   providers: [
     StatusBar,
