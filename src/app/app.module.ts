@@ -5,26 +5,29 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { TasksPageModule } from '../pages/tasks/tasks.module';
+import { NewTaskPageModule } from '../pages/new-task/new-task.module';
+import { TaskFormPageModule } from '../pages/task-form/task-form.module';
 
 import { MyApp } from './app.component';
-import { TasksPage } from '../pages/tasks/tasks';
 import { TaskAPI } from './../api/task';
 
 @NgModule({
   declarations: [
     MyApp,
-    TasksPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    TaskFormPageModule,
+    TasksPageModule,
+    NewTaskPageModule,
     HttpClientModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    TasksPage,
   ],
   providers: [
     StatusBar,
