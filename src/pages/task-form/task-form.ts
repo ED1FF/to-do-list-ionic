@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the TaskFormPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { TaskAPI } from '../../api/task';
+import { TasksPage } from '../tasks/tasks';
 
 @IonicPage()
 @Component({
@@ -14,12 +10,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'task-form.html',
 })
 export class TaskFormPage {
+  taskForm = new FormGroup ({
+    name: new FormControl(),
+    description: new FormControl()
+  });
+  task:any = []
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public taskAPI: TaskAPI, public fb: FormBuilder, public nav: NavController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TaskFormPage');
+  createForm() {
+    this.taskForm = this.fb.group({
+      name: [''],
+      description: ['']
+    });
   }
 
+  create() {
+    this.taskAPI.create({ task: this.taskForm.value }).subscribe((data) => {
+      this.task = data;
+      this.nav.push(TasksPage);
+    })
+  }
 }

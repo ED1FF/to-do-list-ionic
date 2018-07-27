@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TaskFormPage } from '../task-form/task-form'
 
 /**
  * Generated class for the NewTaskPage page.
