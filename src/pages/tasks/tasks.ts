@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { TaskAPI } from '../../api/task';
+import { NewTaskPage } from '../new-task/new-task';
 
 @IonicPage()
 @Component({
@@ -11,7 +12,7 @@ import { TaskAPI } from '../../api/task';
 export class TasksPage {
   tasks:any = [];
 
-  constructor(public taskAPI: TaskAPI) { }
+  constructor(public taskAPI: TaskAPI, public nav: NavController) { }
 
   ionViewDidLoad() {
     this.loadTasks();
@@ -28,6 +29,14 @@ export class TasksPage {
   }
 
   markAsDone() {
-    
+
+  }
+
+  edit() {
+    this.nav.push(NewTaskPage);
+  }
+
+  newTask() {
+    this.nav.push(NewTaskPage);
   }
 }

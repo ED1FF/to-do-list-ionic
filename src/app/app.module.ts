@@ -8,12 +8,14 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { TasksPage } from '../pages/tasks/tasks';
+import { NewTaskPage } from '../pages/new-task/new-task';
 import { TaskAPI } from './../api/task';
 
 @NgModule({
   declarations: [
     MyApp,
     TasksPage,
+    NewTaskPage,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { TaskAPI } from './../api/task';
   entryComponents: [
     MyApp,
     TasksPage,
+    NewTaskPage,
   ],
   providers: [
     StatusBar,
