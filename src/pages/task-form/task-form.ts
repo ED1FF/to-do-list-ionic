@@ -21,6 +21,6 @@ export class TaskFormPage implements OnInit {
   }
 
   create() {
-    this.onCreate.emit(this.taskForm.value)
+    this.onCreate.emit(this.taskForm.value);
   }
 }

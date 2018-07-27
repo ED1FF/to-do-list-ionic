@@ -11,11 +11,9 @@ import { NewTaskPage } from '../new-task/new-task';
 
 export class TasksPage {
   tasks:any = [];
-  createTaskPage: any;
+  createTaskPage:any = NewTaskPage;
 
-  constructor(public taskAPI: TaskAPI) {
-    this.createTaskPage = NewTaskPage
-  }
+  constructor(public taskAPI: TaskAPI) {  }
 
   ionViewDidLoad() {
     this.loadTasks();
