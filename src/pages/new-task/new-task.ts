@@ -11,7 +11,6 @@ import { TasksPage } from '../tasks/tasks';
 })
 
 export class NewTaskPage {
-  task:any = []
 
   constructor(public taskAPI: TaskAPI, public nav: NavController) {
   }
@@ -19,6 +18,6 @@ export class NewTaskPage {
   onCreate(task) {
     this.taskAPI.create({ task: task }).subscribe(() => {
       this.nav.push(TasksPage);
-    })
+    });
   }
 }

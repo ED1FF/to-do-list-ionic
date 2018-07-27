@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
@@ -7,16 +7,13 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
   selector: 'page-task-form',
   templateUrl: 'task-form.html',
 })
-export class TaskFormPage {
+export class TaskFormPage implements OnInit {
   @Output() onCreate: EventEmitter<any> = new EventEmitter();
-  taskForm = new FormGroup ({
-    name: new FormControl(),
-    description: new FormControl()
-  });
+  taskForm:FormGroup;
 
   constructor(public fb: FormBuilder) { }
 
-  createForm() {
+  ngOnInit() {
     this.taskForm = this.fb.group({
       name: [''],
       description: ['']

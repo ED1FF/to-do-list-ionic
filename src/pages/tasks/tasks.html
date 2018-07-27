@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons end>
-      <button ion-button icon-only (click)='newTask()'>
+      <button ion-button icon-only [navPush]='newTaskPage'>
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>

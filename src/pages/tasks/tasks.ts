@@ -11,8 +11,11 @@ import { NewTaskPage } from '../new-task/new-task';
 
 export class TasksPage {
   tasks:any = [];
+  createTaskPage: any;
 
-  constructor(public taskAPI: TaskAPI, public nav: NavController) { }
+  constructor(public taskAPI: TaskAPI) {
+    this.createTaskPage = NewTaskPage
+  }
 
   ionViewDidLoad() {
     this.loadTasks();
@@ -30,13 +33,5 @@ export class TasksPage {
 
   markAsDone() {
 
-  }
-
-  edit() {
-    this.nav.push(NewTaskPage);
-  }
-
-  newTask() {
-    this.nav.push(NewTaskPage);
   }
 }
