@@ -8,7 +8,7 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
   templateUrl: 'task-form.html',
 })
 export class TaskFormPage implements OnInit {
-  @Output() onCreate: EventEmitter<any> = new EventEmitter();
+  @Output() onSubmit: EventEmitter<any> = new EventEmitter();
   taskForm:FormGroup;
 
   constructor(public fb: FormBuilder) { }
@@ -20,7 +20,7 @@ export class TaskFormPage implements OnInit {
     });
   }
 
-  create() {
-    this.onCreate.emit(this.taskForm.value);
+  submit() {
+    this.onSubmit.emit(this.taskForm.value);
   }
 }

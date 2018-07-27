@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { TaskAPI } from '../../api/task';
 import { NewTaskPage } from '../new-task/new-task';
+import { TaskEditPage } from '../task-edit/task-edit';
 
 @IonicPage()
 @Component({
@@ -12,6 +13,7 @@ import { NewTaskPage } from '../new-task/new-task';
 export class TasksPage {
   tasks:any = [];
   createTaskPage:any = NewTaskPage;
+  taskEditPage:any = TaskEditPage;
 
   constructor(public taskAPI: TaskAPI) {  }
 

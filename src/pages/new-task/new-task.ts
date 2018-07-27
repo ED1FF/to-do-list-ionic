@@ -15,7 +15,7 @@ export class NewTaskPage {
   constructor(public taskAPI: TaskAPI, public nav: NavController) {
   }
 
-  onCreate(task) {
+  onSubmit(task) {
     this.taskAPI.create({ task: task }).subscribe(() => {
       this.nav.push(TasksPage);
     });
