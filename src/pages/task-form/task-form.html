@@ -2,11 +2,11 @@
   <form [formGroup]="taskForm" (ngSubmit)="submit()">
     <ion-item>
       <ion-label color="primary" stacked>Name</ion-label>
-      <ion-textarea formControlName="name" name="name"></ion-textarea>
+      <ion-textarea formControlName="name" name="name" [(ngModel)]="task.name"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Description</ion-label>
-      <ion-textarea formControlName="description" name="description"></ion-textarea>
+      <ion-textarea formControlName="description" name="description" [(ngModel)]="task.description"></ion-textarea>
     </ion-item>
     <button ion-button type="submit" block>Add Task</button>
   </form>
