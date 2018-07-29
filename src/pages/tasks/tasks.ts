@@ -31,7 +31,8 @@ export class TasksPage {
 
   }
 
-  markAsDone() {
-
+  markAsDone(task) {
+    this.taskAPI.update(task.id, { done: !task.done }).subscribe(() => {
+    });
   }
 }

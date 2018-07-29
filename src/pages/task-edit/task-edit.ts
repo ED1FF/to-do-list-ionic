@@ -15,7 +15,7 @@ export class TaskEditPage {
   constructor(public nav: NavController, public navParams: NavParams, private taskAPI: TaskAPI) {  }
 
   onSubmit(task) {
-    this.taskAPI.update(this.task.id, { task: task }).subscribe((data) => {
+    this.taskAPI.update(this.task.id, { task: task }).subscribe(() => {
       this.nav.push(TasksPage);
     });
   }

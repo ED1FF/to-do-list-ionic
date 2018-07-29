@@ -15,7 +15,7 @@
       <ion-item>{{task.name}}</ion-item>
       <ion-item-options side="right">
         <button ion-button [navPush]='taskEditPage' [navParams]='{task: task}'>Edit</button>
-        <button ion-button color="secondary" (click)="markAsDone()">Mark as done</button>
+        <button ion-button color="secondary" (click)="markAsDone(task)">Mark as done</button>
         <button ion-button color="danger" (click)="delete()">Delete</button>
       </ion-item-options>
     </ion-item-sliding>
