@@ -3,7 +3,7 @@ import { IonicPage, NavController, IonicErrorHandler } from 'ionic-angular';
 import { TaskAPI } from '../../api/task';
 import { NewTaskPage } from '../new-task/new-task';
 import { TaskEditPage } from '../task-edit/task-edit';
-import { ItemSliding, ToastController } from 'ionic-angular';
+import { ItemSliding, ToastController, AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -17,7 +17,9 @@ export class TasksPage {
   createTaskPage:any = NewTaskPage;
   taskEditPage:any = TaskEditPage;
 
-  constructor(public taskAPI: TaskAPI, private toastCtrl: ToastController) {  }
+  constructor(public taskAPI: TaskAPI,
+              private toastCtrl: ToastController,
+              private alertCtrl: AlertController) {  }
 
   ionViewDidLoad() {
     this.loadTasks();
@@ -30,9 +32,7 @@ export class TasksPage {
   }
 
   delete(task) {
-    if(confirm("Are you sure to delete?")) {
-      this.taskAPI.delete(task.id).subscribe(() => this.deleteSuccessHandler(task), this.deleteErrorHandler);
-    }
+    this.taskAPI.delete(task.id).subscribe(() => this.deleteSuccessHandler(task), this.deleteErrorHandler);
   }
 
   deleteErrorHandler = (error) => {
@@ -70,5 +70,25 @@ export class TasksPage {
 
   closeSlidingItem(slidingItem: ItemSliding) {
     slidingItem.close();
+  }
+
+  deleteConfirm(task) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to delete this task?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.delete(task);
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
