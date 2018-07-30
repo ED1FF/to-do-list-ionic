@@ -1,17 +1,22 @@
 <ion-header>
   <ion-navbar>
+    <ion-title>
+      <ion-segment [(ngModel)]="isDone" (ionChange)="filterByDone();">
+        <ion-segment-button [value]="false"> Active </ion-segment-button>
+        <ion-segment-button [value]="true"> Done </ion-segment-button>
+      </ion-segment>
+    </ion-title>
     <ion-buttons end>
       <button ion-button icon-only [navPush]="createTaskPage">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Tasks</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let task of tasks">
+    <ion-item-sliding *ngFor="let task of filteredTasks">
       <ion-item>{{task.name}}</ion-item>
       <ion-item-options side="right">
         <button ion-button [navPush]='taskEditPage' [navParams]="{task: task}">Edit</button>

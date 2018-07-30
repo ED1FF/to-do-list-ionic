@@ -13,6 +13,8 @@ import { TaskEditPage } from '../task-edit/task-edit';
 
 export class TasksPage {
   tasks:any = [];
+  filteredTasks:any = [];
+  isDone:boolean = false;
   createTaskPage:any = NewTaskPage;
   taskEditPage:any = TaskEditPage;
 
@@ -25,7 +27,12 @@ export class TasksPage {
   loadTasks() {
     this.taskAPI.query().subscribe((data) => {
       this.tasks = data;
-    })
+      this.filterByDone();
+    });
+  }
+
+  filterByDone() {
+    this.filteredTasks = this.tasks.filter((item) => item.done == this.isDone);
   }
 
   delete(task) {
@@ -40,15 +47,20 @@ export class TasksPage {
 
   deleteSuccessHandler = (task) => {
     this.tasks = this.tasks.filter((item) => item.id != task.id );
+    this.filterByDone();
   }
 
   markAsDone(task) {
-    this.taskAPI.update(task.id, { done: !task.done }).subscribe( this.markSuccessHandler, this.markErrorHandler );
+    this.taskAPI.update(task.id, { done: !task.done }).subscribe(() => this.markSuccessHandler(task), this.markErrorHandler );
   }
 
   markErrorHandler = (error) => {
     alert(error);
   }
 
-  markSuccessHandler = () => {  } // add notify
+  markSuccessHandler = (task) => {
+    var done:boolean = this.tasks[this.tasks.indexOf(task)].done
+    this.tasks[this.tasks.indexOf(task)].done = !done
+    this.filterByDone();
+  }
 }
