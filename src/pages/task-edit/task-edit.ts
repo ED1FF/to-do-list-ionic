@@ -15,8 +15,14 @@ export class TaskEditPage {
   constructor(public nav: NavController, public navParams: NavParams, private taskAPI: TaskAPI) {  }
 
   onSubmit(task) {
-    this.taskAPI.update(this.task.id, { task: task }).subscribe(() => {
-      this.nav.push(TasksPage);
-    });
+    this.taskAPI.update(this.task.id, { task: task }).subscribe(this.editSuccessHandler, this.editErrorHandler);
+  }
+
+  editErrorHandler = (error) => {
+    alert(error)
+  }
+
+  editSuccessHandler = () => {
+    this.nav.push(TasksPage);
   }
 }

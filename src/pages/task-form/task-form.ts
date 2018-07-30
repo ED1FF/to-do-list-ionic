@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -16,8 +16,8 @@ export class TaskFormPage implements OnInit {
 
   ngOnInit() {
     this.taskForm = this.fb.group({
-      name: [''],
-      description: ['']
+      name: [this.task.name, [Validators.required]],
+      description: [this.task.description, [Validators.required]]
     });
   }
 
