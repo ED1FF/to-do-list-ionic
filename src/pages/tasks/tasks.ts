@@ -27,8 +27,12 @@ export class TasksPage {
     })
   }
 
-  delete() {
-
+  delete(task) {
+    if(confirm("Are you sure to delete?")) {
+      this.taskAPI.delete(task.id).subscribe(() => {
+        this.tasks = this.tasks.filter((item) => item.id != task.id )
+      });
+    }
   }
 
   markAsDone(task) {
