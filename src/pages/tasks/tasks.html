@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons end>
-      <button ion-button icon-only [navPush]='newTaskPage'>
+      <button ion-button icon-only [navPush]="createTaskPage">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -14,9 +14,9 @@
     <ion-item-sliding *ngFor="let task of tasks">
       <ion-item>{{task.name}}</ion-item>
       <ion-item-options side="right">
-        <button ion-button>Edit</button>
-        <button ion-button color="secondary" (click)="markAsDone()">Mark as done</button>
-        <button ion-button color="danger" (click)="delete()">Delete</button>
+        <button ion-button [navPush]='taskEditPage' [navParams]="{task: task}">Edit</button>
+        <button ion-button color="secondary" (click)="markAsDone(task);">Mark as done</button>
+        <button ion-button color="danger" (click)="delete(task);">Delete</button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

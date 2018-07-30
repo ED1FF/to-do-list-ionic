@@ -1,6 +1,6 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -8,19 +8,20 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
   templateUrl: 'task-form.html',
 })
 export class TaskFormPage implements OnInit {
-  @Output() onCreate: EventEmitter<any> = new EventEmitter();
+  @Output() onSubmit: EventEmitter<any> = new EventEmitter();
   taskForm:FormGroup;
+  @Input() task:any = {};
 
   constructor(public fb: FormBuilder) { }
 
   ngOnInit() {
     this.taskForm = this.fb.group({
-      name: [''],
-      description: ['']
+      name: [this.task.name, [Validators.required]],
+      description: [this.task.description, [Validators.required]]
     });
   }
 
-  create() {
-    this.onCreate.emit(this.taskForm.value);
+  submit() {
+    this.onSubmit.emit(this.taskForm.value);
   }
 }
