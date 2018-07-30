@@ -19,16 +19,15 @@ export class TaskEditPage {
   }
 
   editErrorHandler = (error) => {
-    this.callToaster(error);
+    this.showToaster(error);
   }
 
   editSuccessHandler = () => {
     this.nav.push(TasksPage);
-    this.callToaster('Task has been updated!');
+    this.showToaster('Task has been updated!');
   }
 
-
-  callToaster(toastText){
+  showToaster(toastText) {
     let toast = this.toastCtrl.create({
       message: toastText,
       duration: 3000,

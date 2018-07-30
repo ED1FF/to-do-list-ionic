@@ -36,12 +36,12 @@ export class TasksPage {
   }
 
   deleteErrorHandler = (error) => {
-    this.callToaster(error);
+    this.showToaster(error);
   }
 
   deleteSuccessHandler = (task) => {
     this.tasks = this.tasks.filter((item) => item.id != task.id );
-    this.callToaster('Task has been deleted!');
+    this.showToaster('Task has been deleted!');
   }
 
   markAsDone(task, slidingItem) {
@@ -50,15 +50,15 @@ export class TasksPage {
   }
 
   markErrorHandler = (error) => {
-    this.callToaster(error);
+    this.showToaster(error);
   }
 
   markSuccessHandler = (task) => {
     Object.assign(task, { done: !task.done });
-    this.callToaster('Task status has been changed!');
+    this.showToaster('Task status has been changed!');
   }
 
-  callToaster(toastText){
+  showToaster(toastText) {
     let toast = this.toastCtrl.create({
       message: toastText,
       duration: 3000,
