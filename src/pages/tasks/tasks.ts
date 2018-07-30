@@ -3,7 +3,7 @@ import { IonicPage, NavController, IonicErrorHandler } from 'ionic-angular';
 import { TaskAPI } from '../../api/task';
 import { NewTaskPage } from '../new-task/new-task';
 import { TaskEditPage } from '../task-edit/task-edit';
-
+import { ItemSliding, ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -13,12 +13,11 @@ import { TaskEditPage } from '../task-edit/task-edit';
 
 export class TasksPage {
   tasks:any = [];
-  filteredTasks:any = [];
   isDone:boolean = false;
   createTaskPage:any = NewTaskPage;
   taskEditPage:any = TaskEditPage;
 
-  constructor(public taskAPI: TaskAPI) {  }
+  constructor(public taskAPI: TaskAPI, private toastCtrl: ToastController) {  }
 
   ionViewDidLoad() {
     this.loadTasks();
@@ -27,12 +26,7 @@ export class TasksPage {
   loadTasks() {
     this.taskAPI.query().subscribe((data) => {
       this.tasks = data;
-      this.filterByDone();
     });
-  }
-
-  filterByDone() {
-    this.filteredTasks = this.tasks.filter((item) => item.done == this.isDone);
   }
 
   delete(task) {
@@ -42,25 +36,39 @@ export class TasksPage {
   }
 
   deleteErrorHandler = (error) => {
-    alert(error);
+    this.callToaster(error);
   }
 
   deleteSuccessHandler = (task) => {
     this.tasks = this.tasks.filter((item) => item.id != task.id );
-    this.filterByDone();
+    this.callToaster('Task has been deleted!');
   }
 
-  markAsDone(task) {
+  markAsDone(task, slidingItem) {
+    this.closeSlidingItem(slidingItem)
     this.taskAPI.update(task.id, { done: !task.done }).subscribe(() => this.markSuccessHandler(task), this.markErrorHandler );
   }
 
   markErrorHandler = (error) => {
-    alert(error);
+    this.callToaster(error);
   }
 
   markSuccessHandler = (task) => {
-    var done:boolean = this.tasks[this.tasks.indexOf(task)].done
-    this.tasks[this.tasks.indexOf(task)].done = !done
-    this.filterByDone();
+    Object.assign(task, { done: !task.done });
+    this.callToaster('Task status has been changed!');
+  }
+
+  callToaster(toastText){
+    let toast = this.toastCtrl.create({
+      message: toastText,
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.present();
+  }
+
+  closeSlidingItem(slidingItem: ItemSliding) {
+    slidingItem.close();
   }
 }
