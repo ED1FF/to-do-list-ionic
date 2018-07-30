@@ -8,6 +8,6 @@
       <ion-label color="primary" stacked>Description</ion-label>
       <ion-textarea formControlName="description"></ion-textarea>
     </ion-item>
-    <button ion-button type="submit" block [disabled]="taskForm.invalid">Add Task</button>
+    <button ion-button type="submit" block [disabled]="taskForm.invalid">{{!this.task.name ? 'Create task' : 'Save task'}}</button>
   </form>
 </ion-content>

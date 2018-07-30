@@ -3,7 +3,7 @@ import { IonicPage, NavController, IonicErrorHandler } from 'ionic-angular';
 import { TaskAPI } from '../../api/task';
 import { NewTaskPage } from '../new-task/new-task';
 import { TaskEditPage } from '../task-edit/task-edit';
-
+import { ItemSliding, ToastController, AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -13,10 +13,13 @@ import { TaskEditPage } from '../task-edit/task-edit';
 
 export class TasksPage {
   tasks:any = [];
+  isDone:boolean = false;
   createTaskPage:any = NewTaskPage;
   taskEditPage:any = TaskEditPage;
 
-  constructor(public taskAPI: TaskAPI) {  }
+  constructor(public taskAPI: TaskAPI,
+              private toastCtrl: ToastController,
+              private alertCtrl: AlertController) {  }
 
   ionViewDidLoad() {
     this.loadTasks();
@@ -25,30 +28,67 @@ export class TasksPage {
   loadTasks() {
     this.taskAPI.query().subscribe((data) => {
       this.tasks = data;
-    })
+    });
   }
 
   delete(task) {
-    if(confirm("Are you sure to delete?")) {
-      this.taskAPI.delete(task.id).subscribe(() => this.deleteSuccessHandler(task), this.deleteErrorHandler);
-    }
+    this.taskAPI.delete(task.id).subscribe(() => this.deleteSuccessHandler(task), this.deleteErrorHandler);
   }
 
   deleteErrorHandler = (error) => {
-    alert(error);
+    this.showToaster(error);
   }
 
   deleteSuccessHandler = (task) => {
     this.tasks = this.tasks.filter((item) => item.id != task.id );
+    this.showToaster('Task has been deleted!');
   }
 
-  markAsDone(task) {
-    this.taskAPI.update(task.id, { done: !task.done }).subscribe( this.markSuccessHandler, this.markErrorHandler );
+  markAsDone(task, slidingItem) {
+    this.closeSlidingItem(slidingItem)
+    this.taskAPI.update(task.id, { done: !task.done }).subscribe(() => this.markSuccessHandler(task), this.markErrorHandler );
   }
 
   markErrorHandler = (error) => {
-    alert(error);
+    this.showToaster(error);
   }
 
-  markSuccessHandler = () => {  } // add notify
+  markSuccessHandler = (task) => {
+    Object.assign(task, { done: !task.done });
+    this.showToaster('Task status has been changed!');
+  }
+
+  showToaster(toastText) {
+    let toast = this.toastCtrl.create({
+      message: toastText,
+      duration: 3000,
+      position: 'bottom'
+    });
+
+    toast.present();
+  }
+
+  closeSlidingItem(slidingItem: ItemSliding) {
+    slidingItem.close();
+  }
+
+  deleteConfirm(task) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to delete this task?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.delete(task);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 }
