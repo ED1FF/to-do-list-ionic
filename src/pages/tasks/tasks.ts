@@ -35,11 +35,11 @@ export class TasksPage {
   }
 
   deleteErrorHandler = (error) => {
-    alert(error)
+    alert(error);
   }
 
   deleteSuccessHandler = (task) => {
-    this.tasks = this.tasks.filter((item) => item.id != task.id )
+    this.tasks = this.tasks.filter((item) => item.id != task.id );
   }
 
   markAsDone(task) {
@@ -47,7 +47,7 @@ export class TasksPage {
   }
 
   markErrorHandler = (error) => {
-    alert(error)
+    alert(error);
   }
 
   markSuccessHandler = () => {  } // add notify

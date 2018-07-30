@@ -10,7 +10,7 @@ import { TasksPage } from '../tasks/tasks';
 })
 
 export class TaskEditPage {
-  task:any = this.navParams.get('task') ;
+  task:any = this.navParams.get('task');
 
   constructor(public nav: NavController, public navParams: NavParams, private taskAPI: TaskAPI) {  }
 
@@ -19,7 +19,7 @@ export class TaskEditPage {
   }
 
   editErrorHandler = (error) => {
-    alert(error)
+    alert(error);
   }
 
   editSuccessHandler = () => {
