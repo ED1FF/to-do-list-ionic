@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { TaskAPI } from '../../api/task';
 import { TasksPage } from '../tasks/tasks';
+import { TaskFormPage } from '../task-form/task-form';
 
-@IonicPage()
 @Component({
   selector: 'page-task-edit',
   templateUrl: 'task-edit.html',

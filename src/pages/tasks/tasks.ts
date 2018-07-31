@@ -1,11 +1,10 @@
 import { Component, ErrorHandler } from '@angular/core';
-import { IonicPage, NavController, IonicErrorHandler } from 'ionic-angular';
+import { NavController, IonicErrorHandler } from 'ionic-angular';
 import { TaskAPI } from '../../api/task';
 import { NewTaskPage } from '../new-task/new-task';
 import { TaskEditPage } from '../task-edit/task-edit';
 import { ItemSliding, ToastController, AlertController } from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'page-tasks',
   templateUrl: 'tasks.html',

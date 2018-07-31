@@ -1,8 +1,6 @@
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-@IonicPage()
 @Component({
   selector: 'page-task-form',
   templateUrl: 'task-form.html',

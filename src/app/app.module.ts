@@ -1,10 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+
+// import { TasksPageModule } from '../pages/tasks/tasks.module';
+// import { NewTaskPageModule } from '../pages/new-task/new-task.module';
+// import { TaskFormPageModule } from '../pages/task-form/task-form.module';
+// import { TaskEditPageModule } from '../pages/task-edit/task-edit.module';
 
 import { MyApp } from './app.component';
 import { TaskAPI } from './../api/task';
