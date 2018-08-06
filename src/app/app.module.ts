@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { TaskAPI } from './../api/task';
+import { UserAPI } from './../api/user';
 import { TasksPage } from '../pages/tasks/tasks';
 import { NewTaskPage } from '../pages/new-task/new-task';
 import { TaskFormPage } from '../pages/task-form/task-form';
