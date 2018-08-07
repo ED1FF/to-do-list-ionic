@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { TasksPage } from '../pages/tasks/tasks';
-import { AuthService }  from './../auth/auth.service';
+import { AuthService }  from '../services/auth';
 import { EVENT_KEYS } from './../constants/events';
 
 @Component({

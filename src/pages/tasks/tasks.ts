@@ -4,7 +4,7 @@ import { TaskAPI } from '../../api/task';
 import { NewTaskPage } from '../new-task/new-task';
 import { TaskEditPage } from '../task-edit/task-edit';
 import { ItemSliding, ToastController, AlertController } from 'ionic-angular';
-import { AuthService }  from '../../auth/auth.service';
+import { AuthService }  from '../../services/auth';
 
 @Component({
   selector: 'page-tasks',
