@@ -20,6 +20,7 @@ import { TaskFormPage } from '../pages/task-form/task-form';
 import { TaskEditPage } from '../pages/task-edit/task-edit';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { SignUpPage }  from '../pages/sign-up/sign-up';
+import { TaskShowPage }  from '../pages/task-show/task-show';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SignUpPage }  from '../pages/sign-up/sign-up';
     TaskFormPage,
     TaskEditPage,
     SignInPage,
-    SignUpPage
+    SignUpPage,
+    TaskShowPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { SignUpPage }  from '../pages/sign-up/sign-up';
     TaskFormPage,
     TaskEditPage,
     SignInPage,
-    SignUpPage
+    SignUpPage,
+    TaskShowPage
   ],
   providers: [
     StatusBar,

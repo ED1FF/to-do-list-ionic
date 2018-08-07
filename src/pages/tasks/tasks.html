@@ -27,7 +27,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let task of tasks" [hidden]="task.done != isDone" #slidingItem>
-      <ion-item>
+      <ion-item [navPush]="taskShowPage" [navParams]="{task: task}">
         {{task.name}}
       </ion-item>
       <ion-item-options side="right">
