@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { AuthService } from "./../auth/auth.service";
 
 import { MyApp } from './app.component';
 import { TaskAPI } from './../api/task';
@@ -44,7 +45,9 @@ import { SignInPage } from '../pages/sign-in/sign-in';
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
     TaskAPI,
+    UserAPI,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
