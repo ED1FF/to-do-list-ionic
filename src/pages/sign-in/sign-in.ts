@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, Events } from 'ionic-angular';
 import { AuthService } from '../../auth/auth.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserAPI } from "../../api/user";
-import { Events } from 'ionic-angular';
-import { EVENT_KEYS } from '../../constants/constants';
+import { SessionAPI } from "../../api/session";
+import { EVENT_KEYS } from '../../constants/events';
 
 @Component({
   selector: 'page-sign-in',
@@ -14,12 +13,12 @@ import { EVENT_KEYS } from '../../constants/constants';
 export class SignInPage implements OnInit {
   signInForm:FormGroup;
 
-  constructor(public navCtrl: NavController,
+  constructor(private toastCtrl: ToastController,
+              public navCtrl: NavController,
               public auth: AuthService,
-              private toastCtrl: ToastController,
               public events: Events,
               public fb: FormBuilder,
-              public userApi: UserAPI) {}
+              public sessionApi: SessionAPI) {}
 
   ngOnInit() {
     this.signInForm = this.fb.group({
@@ -29,12 +28,12 @@ export class SignInPage implements OnInit {
   }
 
   submit() {
-    this.userApi.signIn(this.signInForm.value).subscribe((data) => this.submitSuccessHandler(data), this.submitErrorHandler);
+    this.sessionApi.create(this.signInForm.value).subscribe(this.submitSuccessHandler, this.submitErrorHandler);
   }
 
   submitSuccessHandler = (data) => {
     this.auth.saveToken(data['token']);
-    this.events.publish(EVENT_KEYS.SIGN_IN);
+    this.events.publish(EVENT_KEYS.LOGGED_IN);
   }
 
   submitErrorHandler = (error) => {

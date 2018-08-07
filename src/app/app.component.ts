@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Events } from 'ionic-angular';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { TasksPage } from '../pages/tasks/tasks';
 import { AuthService }  from './../auth/auth.service';
-import { EVENT_KEYS } from './../constants/constants';
+import { EVENT_KEYS } from './../constants/events';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,7 +20,7 @@ export class MyApp {
               public events: Events,
               public auth: AuthService) {
 
-    events.subscribe(EVENT_KEYS.SIGN_IN, () => {
+    events.subscribe(EVENT_KEYS.LOGGED_IN, () => {
       this.rootPage = TasksPage;
     });
 
@@ -33,8 +32,7 @@ export class MyApp {
   }
 
   setRootPage() {
-    let token = this.auth.getToken
-    token.then((val) => {
+    this.auth.getToken.then((val) => {
       if (val) {
         this.rootPage = TasksPage;
       } else {

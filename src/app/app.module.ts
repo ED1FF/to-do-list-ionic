@@ -11,6 +11,7 @@ import { TokenInterceptor } from './../auth/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MyApp } from './app.component';
+import { SessionAPI }  from './../api/session';
 import { TaskAPI } from './../api/task';
 import { UserAPI } from './../api/user';
 import { TasksPage } from '../pages/tasks/tasks';
@@ -48,6 +49,7 @@ import { SignInPage } from '../pages/sign-in/sign-in';
     StatusBar,
     SplashScreen,
     AuthService,
+    SessionAPI,
     TaskAPI,
     UserAPI,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
