@@ -24,6 +24,10 @@ export class MyApp {
       this.rootPage = TasksPage;
     });
 
+    events.subscribe(EVENT_KEYS.SIGN_OUT, () => {
+      this.rootPage = SignInPage;
+    });
+
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
