@@ -1,23 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { STORAGE_KEYS } from '../constants/constants';
 
 @Injectable()
 export class AuthService {
   constructor(private storage: Storage) {}
 
   public get getToken() {
-    return this.storage.get('auth_token');
+    return this.storage.get(STORAGE_KEYS.AUTH_TOKEN);
   }
 
   public saveToken(token) {
-    this.storage.set('auth_token', token);
+    this.storage.set(STORAGE_KEYS.AUTH_TOKEN, token);
   }
 
   public signOut(){
-    localStorage.clear();
+    this.storage.clear();
   }
 
-  public get isAuthenticated() {
-    return localStorage.getItem('auth_token') != null;
+  public isAuthenticated() {
+    this.storage.get(STORAGE_KEYS.AUTH_TOKEN).then((val) => {
+      return val != null;
+    });
   }
 }
