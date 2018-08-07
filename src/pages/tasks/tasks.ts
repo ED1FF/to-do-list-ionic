@@ -32,10 +32,6 @@ export class TasksPage {
     });
   }
 
-  signOut() {
-    this.auth.signOut();
-  }
-
   delete(task) {
     this.taskAPI.delete(task.id).subscribe(() => this.deleteSuccessHandler(task), this.deleteErrorHandler);
   }

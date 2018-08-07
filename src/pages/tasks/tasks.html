@@ -14,15 +14,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-menu [content]="mycontent">
+<ion-menu [content]="content">
   <ion-content>
     <ion-list>
-      <ion-item menuClose detail-none (click)='signOut()'>Sign Out</ion-item>
+      <ion-item menuClose detail-none (click)='this.auth.signOut();'>Sign Out</ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
 
-<ion-nav #mycontent [root]="rootPage"></ion-nav>
+<ion-nav #content [root]="rootPage"></ion-nav>
 
 <ion-content padding>
   <ion-list>
