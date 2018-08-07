@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Task</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3><b>Name:</b></h3>
+  <p>{{task.name}}</p>
+  <h3><b>Description:</b></h3>
+  <p>{{task.description}}</p>
+  <h3><b>Created:</b></h3>
+  <p>{{task.created_at | date: 'short'}}</p>
+  <h3><b>Status</b></h3>
+  <p>{{task.done ? "Done" : "Active"}}</p>
+</ion-content>

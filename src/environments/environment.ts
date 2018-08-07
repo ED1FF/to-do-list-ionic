@@ -1,4 +1,3 @@
 export const environment = {
-  production: false,
-  api_endpoint: 'http://localhost:3000'
+  api_endpoint: 'https://to-do-tasks-api.herokuapp.com'
 };
