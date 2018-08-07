@@ -20,15 +20,25 @@ export class MyApp {
               public events: Events,
               public auth: AuthService) {
 
-    if (this.auth.isAuthenticated) {
+    events.subscribe('signIn', () => {
       this.rootPage = TasksPage;
-    } else {
-      this.rootPage = SignInPage;
-    }
+    });
 
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
+      this.setRootPage();
+    });
+  }
+
+  setRootPage() {
+    let token = this.auth.getToken
+    token.then((val) => {
+      if (val) {
+        this.rootPage = TasksPage;
+      } else {
+        this.rootPage = SignInPage;
+      }
     });
   }
 }

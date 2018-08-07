@@ -17,10 +17,4 @@ export class AuthService {
   public signOut(){
     this.storage.clear();
   }
-
-  public isAuthenticated() {
-    this.storage.get(STORAGE_KEYS.AUTH_TOKEN).then((val) => {
-      return val != null;
-    });
-  }
 }

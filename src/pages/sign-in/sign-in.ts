@@ -3,6 +3,7 @@ import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { AuthService } from '../../auth/auth.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserAPI } from "../../api/user";
+import { Events } from 'ionic-angular';
 import { TasksPage } from "../tasks/tasks";
 
 @Component({
@@ -17,6 +18,7 @@ export class SignInPage implements OnInit {
   constructor(public navCtrl: NavController,
               public auth: AuthService,
               private toastCtrl: ToastController,
+              public events: Events,
               public fb: FormBuilder,
               public userApi: UserAPI) {}
 
@@ -33,7 +35,7 @@ export class SignInPage implements OnInit {
 
   submitSuccessHandler = (data) => {
     this.auth.saveToken(data['token']);
-    this.navCtrl.push(TasksPage)
+    this.events.publish('signIn');
   }
 
   submitErrorHandler = (error) => {
