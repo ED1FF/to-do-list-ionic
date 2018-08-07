@@ -19,6 +19,7 @@ import { NewTaskPage } from '../pages/new-task/new-task';
 import { TaskFormPage } from '../pages/task-form/task-form';
 import { TaskEditPage } from '../pages/task-edit/task-edit';
 import { SignInPage } from '../pages/sign-in/sign-in';
+import { SignUpPage }  from '../pages/sign-up/sign-up';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SignInPage } from '../pages/sign-in/sign-in';
     NewTaskPage,
     TaskFormPage,
     TaskEditPage,
-    SignInPage
+    SignInPage,
+    SignUpPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { SignInPage } from '../pages/sign-in/sign-in';
     NewTaskPage,
     TaskFormPage,
     TaskEditPage,
-    SignInPage
+    SignInPage,
+    SignUpPage
   ],
   providers: [
     StatusBar,

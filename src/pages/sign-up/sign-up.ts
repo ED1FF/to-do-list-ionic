@@ -1,35 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastController, Events } from 'ionic-angular';
-import { AuthService } from '../../auth/auth.service';
+import { Component } from '@angular/core';
+import { NavController, Events, ToastController } from 'ionic-angular';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SessionAPI } from "../../api/session";
 import { EVENT_KEYS } from '../../constants/events';
-import { SignUpPage }  from '../sign-up/sign-up';
+import { AuthService } from '../../auth/auth.service';
+import { UserAPI } from "../../api/user";
 
 @Component({
-  selector: 'page-sign-in',
-  templateUrl: 'sign-in.html',
+  selector: 'page-sign-up',
+  templateUrl: 'sign-up.html'
 })
 
-export class SignInPage implements OnInit {
-  signInForm:FormGroup;
-  signUpPage:any = SignUpPage;
+export class SignUpPage {
+  signUpForm:FormGroup;
 
   constructor(private toastCtrl: ToastController,
               public auth: AuthService,
               public events: Events,
               public fb: FormBuilder,
-              public sessionApi: SessionAPI) {}
+              public userApi: UserAPI) {}
 
   ngOnInit() {
-    this.signInForm = this.fb.group({
+    this.signUpForm = this.fb.group({
       email: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      password_confirmation: ['', [Validators.required]]
     });
   }
 
   submit() {
-    this.sessionApi.create(this.signInForm.value).subscribe(this.submitSuccessHandler, this.submitErrorHandler);
+    this.userApi.create(this.signUpForm.value).subscribe(this.submitSuccessHandler, this.submitErrorHandler);
   }
 
   submitSuccessHandler = (data) => {
