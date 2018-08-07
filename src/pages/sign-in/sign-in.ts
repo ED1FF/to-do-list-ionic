@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController, Events } from 'ionic-angular';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../services/auth';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SessionAPI } from "../../api/session";
 import { EVENT_KEYS } from '../../constants/events';

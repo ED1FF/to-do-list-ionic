@@ -4,6 +4,7 @@ import { TaskAPI } from '../../api/task';
 import { NewTaskPage } from '../new-task/new-task';
 import { TaskEditPage } from '../task-edit/task-edit';
 import { ItemSliding, ToastController, AlertController } from 'ionic-angular';
+import { AuthService }  from '../../services/auth';
 
 @Component({
   selector: 'page-tasks',
@@ -17,6 +18,7 @@ export class TasksPage {
   taskEditPage:any = TaskEditPage;
 
   constructor(public taskAPI: TaskAPI,
+              public auth: AuthService,
               private toastCtrl: ToastController,
               private alertCtrl: AlertController) {  }
 

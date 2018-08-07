@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-import { AuthService } from "./../auth/auth.service";
+import { AuthService } from "./../services/auth";
 import { TokenInterceptor } from './../auth/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Events, ToastController } from 'ionic-angular';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EVENT_KEYS } from '../../constants/events';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../services/auth';
 import { SignInPage }  from '../sign-in/sign-in';
 import { UserAPI } from "../../api/user";
 import { CustomValidators } from 'ng2-validation';
