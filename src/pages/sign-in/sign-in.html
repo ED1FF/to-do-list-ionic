@@ -2,12 +2,13 @@
   <form [formGroup]="signInForm" (ngSubmit)="submit();">
     <ion-item>
       <ion-label color="primary" stacked>Email</ion-label>
-      <ion-input formControlName="email" type='email'></ion-input>
+      <ion-input formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label color="primary" stacked>password</ion-label>
+      <ion-label color="primary" stacked>Password</ion-label>
       <ion-input formControlName="password" type='password'></ion-input>
     </ion-item>
     <button ion-button type="submit" block [disabled]="signInForm.invalid">Sign in</button>
   </form>
+  <button ion-button [navPush]='signUpPage' block color='secondary'>Sign up here!</button>
 </ion-content>

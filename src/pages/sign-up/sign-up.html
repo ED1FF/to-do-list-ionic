@@ -1,0 +1,18 @@
+<ion-content padding>
+  <form [formGroup]="signUpForm" (ngSubmit)="submit();">
+    <ion-item>
+      <ion-label color="primary" stacked>Email</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Password</ion-label>
+      <ion-input formControlName="password" type='password'></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Password Confirmation</ion-label>
+      <ion-input formControlName="password_confirmation" type='password'></ion-input>
+    </ion-item>
+    <button ion-button type="submit" block [disabled]="signUpForm.invalid">Sign in</button>
+  </form>
+  <button ion-button [navPush]='signInPage' block color='secondary'>Back</button>
+</ion-content>

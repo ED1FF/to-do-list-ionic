@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, ToastController, Events } from 'ionic-angular';
+import { ToastController, Events } from 'ionic-angular';
 import { AuthService } from '../../auth/auth.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SessionAPI } from "../../api/session";
 import { EVENT_KEYS } from '../../constants/events';
+import { CustomValidators } from 'ng2-validation';
+import { SignUpPage }  from '../sign-up/sign-up';
 
 @Component({
   selector: 'page-sign-in',
@@ -12,9 +14,9 @@ import { EVENT_KEYS } from '../../constants/events';
 
 export class SignInPage implements OnInit {
   signInForm:FormGroup;
+  signUpPage:any = SignUpPage;
 
   constructor(private toastCtrl: ToastController,
-              public navCtrl: NavController,
               public auth: AuthService,
               public events: Events,
               public fb: FormBuilder,
@@ -22,8 +24,8 @@ export class SignInPage implements OnInit {
 
   ngOnInit() {
     this.signInForm = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      email: ['', [Validators.required, CustomValidators.email]],
+      password: ['', [Validators.required, CustomValidators.rangeLength([8, 24])]]
     });
   }
 
