@@ -33,7 +33,7 @@ export class SignUpPage {
   }
 
   submit() {
-    this.userApi.create(this.signUpForm.value).subscribe(this.submitSuccessHandler, this.submitErrorHandler);
+    this.userApi.create({user: this.signUpForm.value}).subscribe(this.submitSuccessHandler, this.submitErrorHandler);
   }
 
   submitSuccessHandler = (data) => {
