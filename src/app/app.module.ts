@@ -1,22 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-
-// import { TasksPageModule } from '../pages/tasks/tasks.module';
-// import { NewTaskPageModule } from '../pages/new-task/new-task.module';
-// import { TaskFormPageModule } from '../pages/task-form/task-form.module';
-// import { TaskEditPageModule } from '../pages/task-edit/task-edit.module';
+import { AuthService } from "./../auth/auth.service";
+import { TokenInterceptor } from './../auth/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MyApp } from './app.component';
+import { SessionAPI }  from './../api/session';
 import { TaskAPI } from './../api/task';
+import { UserAPI } from './../api/user';
 import { TasksPage } from '../pages/tasks/tasks';
 import { NewTaskPage } from '../pages/new-task/new-task';
 import { TaskFormPage } from '../pages/task-form/task-form';
 import { TaskEditPage } from '../pages/task-edit/task-edit';
+import { SignInPage } from '../pages/sign-in/sign-in';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { TaskEditPage } from '../pages/task-edit/task-edit';
     TasksPage,
     NewTaskPage,
     TaskFormPage,
-    TaskEditPage
+    TaskEditPage,
+    SignInPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,13 +42,18 @@ import { TaskEditPage } from '../pages/task-edit/task-edit';
     TasksPage,
     NewTaskPage,
     TaskFormPage,
-    TaskEditPage
+    TaskEditPage,
+    SignInPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
+    SessionAPI,
     TaskAPI,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    UserAPI,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ]
 })
 export class AppModule {}
