@@ -3,7 +3,9 @@ import { NavController, Events, ToastController } from 'ionic-angular';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EVENT_KEYS } from '../../constants/events';
 import { AuthService } from '../../auth/auth.service';
+import { SignInPage }  from '../sign-in/sign-in';
 import { UserAPI } from "../../api/user";
+import { CustomValidators } from 'ng2-validation';
 
 @Component({
   selector: 'page-sign-up',
@@ -12,6 +14,9 @@ import { UserAPI } from "../../api/user";
 
 export class SignUpPage {
   signUpForm:FormGroup;
+  signInPage:any = SignInPage;
+  password = new FormControl('', [Validators.required, CustomValidators.rangeLength([8, 24])]);
+  password_confirmation = new FormControl('', [Validators.required, CustomValidators.equalTo(this.password)]);
 
   constructor(private toastCtrl: ToastController,
               public auth: AuthService,
@@ -21,9 +26,9 @@ export class SignUpPage {
 
   ngOnInit() {
     this.signUpForm = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      password_confirmation: ['', [Validators.required]]
+      email: ['', [Validators.required, CustomValidators.email]],
+      password: this.password,
+      password_confirmation: this.password_confirmation
     });
   }
 

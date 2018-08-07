@@ -4,6 +4,7 @@ import { AuthService } from '../../auth/auth.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SessionAPI } from "../../api/session";
 import { EVENT_KEYS } from '../../constants/events';
+import { CustomValidators } from 'ng2-validation';
 import { SignUpPage }  from '../sign-up/sign-up';
 
 @Component({
@@ -23,8 +24,8 @@ export class SignInPage implements OnInit {
 
   ngOnInit() {
     this.signInForm = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      email: ['', [Validators.required, CustomValidators.email]],
+      password: ['', [Validators.required, CustomValidators.rangeLength([8, 24])]]
     });
   }
 

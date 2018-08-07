@@ -2,7 +2,7 @@
   <form [formGroup]="signUpForm" (ngSubmit)="submit();">
     <ion-item>
       <ion-label color="primary" stacked>Email</ion-label>
-      <ion-input formControlName="email" type='email'></ion-input>
+      <ion-input formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary" stacked>Password</ion-label>
@@ -14,4 +14,5 @@
     </ion-item>
     <button ion-button type="submit" block [disabled]="signUpForm.invalid">Sign in</button>
   </form>
+  <button ion-button [navPush]='signInPage' block color='secondary'>Back</button>
 </ion-content>
