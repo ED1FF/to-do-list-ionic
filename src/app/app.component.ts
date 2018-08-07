@@ -6,6 +6,7 @@ import { Events } from 'ionic-angular';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { TasksPage } from '../pages/tasks/tasks';
 import { AuthService }  from './../auth/auth.service';
+import { EVENT_KEYS } from './../constants/constants';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,7 +21,7 @@ export class MyApp {
               public events: Events,
               public auth: AuthService) {
 
-    events.subscribe('signIn', () => {
+    events.subscribe(EVENT_KEYS.SIGN_IN, () => {
       this.rootPage = TasksPage;
     });
 

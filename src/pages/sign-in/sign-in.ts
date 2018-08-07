@@ -4,7 +4,7 @@ import { AuthService } from '../../auth/auth.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserAPI } from "../../api/user";
 import { Events } from 'ionic-angular';
-import { TasksPage } from "../tasks/tasks";
+import { EVENT_KEYS } from '../../constants/constants';
 
 @Component({
   selector: 'page-sign-in',
@@ -13,7 +13,6 @@ import { TasksPage } from "../tasks/tasks";
 
 export class SignInPage implements OnInit {
   signInForm:FormGroup;
-  user:any = {};
 
   constructor(public navCtrl: NavController,
               public auth: AuthService,
@@ -30,12 +29,12 @@ export class SignInPage implements OnInit {
   }
 
   submit() {
-    this.userApi.signIn(this.signInForm.value).subscribe((data) => this.submitSuccessHandler(data), this.submitErrorHandler)
+    this.userApi.signIn(this.signInForm.value).subscribe((data) => this.submitSuccessHandler(data), this.submitErrorHandler);
   }
 
   submitSuccessHandler = (data) => {
     this.auth.saveToken(data['token']);
-    this.events.publish('signIn');
+    this.events.publish(EVENT_KEYS.SIGN_IN);
   }
 
   submitErrorHandler = (error) => {
@@ -48,8 +47,6 @@ export class SignInPage implements OnInit {
       duration: 3000,
       position: 'bottom'
     });
-
     toast.present();
   }
-
 }
