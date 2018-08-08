@@ -94,4 +94,11 @@ export class TasksPage {
     });
     alert.present();
   }
+
+  doRefresh(refresher) {
+    this.loadTasks();
+    setTimeout(() => {
+      refresher.complete();
+    });
+  }
 }
