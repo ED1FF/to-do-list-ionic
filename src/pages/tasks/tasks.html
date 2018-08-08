@@ -25,7 +25,7 @@
 <ion-nav #content [root]="rootPage"></ion-nav>
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher (ionRefresh)="loadTasks($event);">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list>

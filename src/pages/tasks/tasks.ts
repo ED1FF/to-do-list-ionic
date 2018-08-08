@@ -28,18 +28,18 @@ export class TasksPage {
     this.loadTasks();
   }
 
-  loadTasks() {
+  loadTasks(refresher = undefined) {
     this.taskAPI.query().subscribe((data) => {
       this.tasks = data;
+      refresher && refresher.complete();
+    }, (error) =>{
+      this.showToaster(error);
+      refresher && refresher.complete();
     });
   }
 
   delete(task) {
-    this.taskAPI.delete(task.id).subscribe(() => this.deleteSuccessHandler(task), this.deleteErrorHandler);
-  }
-
-  deleteErrorHandler = (error) => {
-    this.showToaster(error);
+    this.taskAPI.delete(task.id).subscribe(() => this.deleteSuccessHandler(task), this.showToaster)
   }
 
   deleteSuccessHandler = (task) => {
@@ -49,11 +49,7 @@ export class TasksPage {
 
   markAsDone(task, slidingItem) {
     this.closeSlidingItem(slidingItem)
-    this.taskAPI.update(task.id, { done: !task.done }).subscribe(() => this.markSuccessHandler(task), this.markErrorHandler );
-  }
-
-  markErrorHandler = (error) => {
-    this.showToaster(error);
+    this.taskAPI.update(task.id, { done: !task.done }).subscribe(() => this.markSuccessHandler(task), this.showToaster);
   }
 
   markSuccessHandler = (task) => {
@@ -61,13 +57,12 @@ export class TasksPage {
     this.showToaster('Task status has been changed!');
   }
 
-  showToaster(toastText) {
+  showToaster = (toastText) => {
     let toast = this.toastCtrl.create({
       message: toastText,
       duration: 3000,
       position: 'bottom'
     });
-
     toast.present();
   }
 
@@ -93,12 +88,5 @@ export class TasksPage {
       ]
     });
     alert.present();
-  }
-
-  doRefresh(refresher) {
-    this.loadTasks();
-    setTimeout(() => {
-      refresher.complete();
-    });
   }
 }
