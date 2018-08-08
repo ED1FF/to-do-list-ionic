@@ -25,6 +25,9 @@
 <ion-nav #content [root]="rootPage"></ion-nav>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="loadTasks($event);">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ion-item-sliding *ngFor="let task of tasks" [hidden]="task.done != isDone" #slidingItem>
       <ion-item [navPush]="taskShowPage" [navParams]="{task: task}">
